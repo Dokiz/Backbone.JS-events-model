@@ -18,8 +18,8 @@ $ (function (){
 			});
 		},
 		
-			validate: functinon(attrs) {
-				if (attrs.size>1000){
+			validate: function(attrs) {
+				if (attrs.size>1000) {
 					console.log('Incorrect size')
 					return 'Incorrect size';
 				}
