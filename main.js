@@ -1,23 +1,18 @@
-$(function (){
-	var object = {}; //создаеться обьект
+var app = app || {};
+$ (function (){
 	
-	
-	_.extend(object, Backbone.Events);//и посредствон андерскоер расширяем наш обьект бекбоном
-	
-	object.on("alert", function(msg) {  //слушаеься событие и вызываеться функия
-		     alert("Triggered" + msg); 
+	app.MyObject = Backbone.Model.extend({
+		
 	});
 	
+	app.myObject = new app.MyObject({
+		name:"Rocket",
+		description: "super"
+});
+     var json = app.myObject.toJSON();
+	 console.log(json);
 	
-	object.on("alert", function(msg) {
-		 console.log("Triggered" + msg); //вызов в консоль
-	});
 	
 	
-	object.trigger("alert","an event");//вызываеться событие алерт с параметром ан авент
-    
 	
-	$('#btn').live('click',function(){
-		object.trigger("alert","clicked");
-	});
 });
