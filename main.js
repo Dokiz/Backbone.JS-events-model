@@ -12,17 +12,26 @@ $ (function (){
 			
 			this.on('change',function(){	
 			console.log('obj change');
-			         var json = app.myObject.toJSON();
+			         var json = app.myObject.changedAttributes();
 	              console.log(json);
 	
 			});
 		},
+		
+			validate: functinon(attrs) {
+				if (attrs.size>1000){
+					console.log('Incorrect size')
+					return 'Incorrect size';
+				}
+			},
 		increaseSize: function(){
 			app.myObject.set({
 			size: this.get('size')+100
-			});
+			},{
+				validate:true
+				});
 			
-		}
+		},
 		
 	});
 	
