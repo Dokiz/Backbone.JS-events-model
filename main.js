@@ -1,50 +1,26 @@
-var app = app || {};
-$ (function (){
-	
-	app.MyObject = Backbone.Model.extend({
-		defaults:{
-			name:"name",
-			description:"-",
-			size: 100
-		},
-		initialize: function(){
-			console.log('obj created');
-			
-			this.on('change',function(){	
-			console.log('obj change');
-			         var json = app.myObject.changedAttributes();
-	              console.log(json);
-	
-			});
-		},
-		
-			validate: function(attrs) {
-				if (attrs.size>1000) {
-					console.log('Incorrect size')
-					return 'Incorrect size';
-				}
-			},
-		increaseSize: function(){
-			app.myObject.set({
-			size: this.get('size')+100
-			},{
-				validate:true
-				});
-			
-		},
-		
-	});
-	
-	app.myObject = new app.MyObject({
-		name:"Rocket",
-		description: "super"
-});
-        app.myObject.set({
-			size: 250,
-			type: 'active'
-			
-});
-	$('#myButton').live('click',function(){
-		app.myObject.increaseSize();
-	});
-});
+$(function (){
+ 	var object = {}; //создаеться обьект
+ 	
+ 	
+ 	_.extend(object, Backbone.Events);//и посредствон андерскоер расширяем наш обьект бекбоном
+ 	
+ 	object.on("alert", function(msg) {  //слушаеься событие и вызываеться функия
+ 		     alert("Triggered" + msg); 
+ 	});
+ 	
+ 	
+ 	object.on("alert", function(msg) {
+ 		 console.log("Triggered" + msg); //вызов в консоль
+ 	});
+ 	
+ 	
+	object.trigger("alert","an event");//вызываеться событие алерт с параметром ан авент
+     
+ 	
+ 	$('#myButton').on('click',function(){
+ 		object.trigger("alert","clicked");
+ 	});
+	$('#m').on('click',function(){
+ 		object.trigger("alert","clicked");
+ 	});
+ }); 
